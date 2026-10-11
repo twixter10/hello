@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry, Mica 💜</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #eee5ff, #d8c4ff, #f7edff);
+    color: #49365e;
+    overflow-x: hidden;
+}
+
+.heart {
+    position: fixed;
+    color: #a77be8;
+    opacity: 0.35;
+    animation: float 6s infinite ease-in-out;
+    pointer-events: none;
+}
+
+.heart:nth-child(1) {
+    top: 12%;
+    left: 10%;
+    font-size: 30px;
+}
+
+.heart:nth-child(2) {
+    top: 75%;
+    right: 12%;
+    font-size: 40px;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(3) {
+    top: 25%;
+    right: 15%;
+    font-size: 22px;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+.card {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px 32px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(103, 66, 145, 0.15);
+    backdrop-filter: blur(12px);
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.emoji {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #8052b5;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #9a80b1;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* ============================
+   HUG STICKER
+   ============================ */
+.hug-sticker {
+    display: inline-block;
+    margin: 10px auto 5px;
+    font-size: 60px;
+    line-height: 1;
+    animation: hug 2.2s ease-in-out infinite;
+    transform-origin: center bottom;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    user-select: none;
+    filter: drop-shadow(0 6px 10px rgba(128, 82, 181, 0.35));
+}
+
+.hug-sticker:hover {
+    transform: scale(1.15) rotate(-4deg);
+}
+
+@keyframes hug {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    20% {
+        transform: scale(1.12) rotate(-6deg);
+    }
+    40% {
+        transform: scale(1.08) rotate(6deg);
+    }
+    60% {
+        transform: scale(1.15) rotate(-4deg);
+    }
+    80% {
+        transform: scale(1.05) rotate(3deg);
+    }
+}
+
+.hug-label {
+    display: block;
+    font-size: 12px;
+    color: #9a80b1;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Floating side hug sticker */
+.hug-float {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 42px;
+    animation: hugFloat 3s ease-in-out infinite;
+    z-index: 10;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 12px rgba(128, 82, 181, 0.4));
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.hug-float:hover {
+    transform: scale(1.2);
+}
+
+@keyframes hugFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-14px) rotate(5deg);
+    }
+}
+
+/* Sticker burst on click */
+.sticker-burst {
+    position: fixed;
+    font-size: 28px;
+    pointer-events: none;
+    animation: burstUp 1.2s ease-out forwards;
+    z-index: 100;
+}
+
+@keyframes burstUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.4);
+    }
+}
+
+.letter {
+    text-align: left;
+    line-height: 1.9;
+    font-size: 15px;
+    color: #594966;
+}
+
+.letter p {
+    margin-bottom: 15px;
+}
+
+.signature {
+    text-align: center;
+    margin-top: 25px;
+    color: #8052b5;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.music-btn, .read-btn {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.music-btn {
+    margin-top: 22px;
+    color: white;
+    background: #9970ce;
+}
+
+.read-btn {
+    margin-top: 15px;
+    color: #8052b5;
+    background: #eee3ff;
+}
+
+.music-btn:hover, .read-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.footer {
+    margin-top: 22px;
+    color: #aa95bc;
+    font-size: 12px;
+}
+
+#extra {
+    display: none;
+    margin-top: 15px;
+    color: #8052b5;
+    line-height: 1.8;
+}
+
+/* Autoplay overlay prompt */
+.autoplay-prompt {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(73, 54, 94, 0.5);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.autoplay-prompt.show {
+    display: flex;
+}
+
+.autoplay-prompt .prompt-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px 30px;
+    border-radius: 22px;
+    text-align: center;
+    max-width: 340px;
+    box-shadow: 0 20px 50px rgba(103, 66, 145, 0.3);
+    animation: appear 0.5s ease;
+}
+
+.autoplay-prompt .prompt-box .prompt-emoji {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.autoplay-prompt .prompt-box p {
+    color: #594966;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.autoplay-prompt .prompt-box button {
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #9970ce;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.autoplay-prompt .prompt-box button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 30px 22px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .letter {
+        font-size: 14px;
+    }
+
+    .hug-sticker {
+        font-size: 50px;
+    }
+
+    .hug-float {
+        font-size: 34px;
+        bottom: 14px;
+        left: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart">♡</div>
+<div class="heart">♥</div>
+<div class="heart">♡</div>
+
+<!-- Floating hug sticker (clickable) -->
+<div class="hug-float" onclick="spawnBurst(event, '🤗')" title="Sending a hug!">
+    🤗
+</div>
+
+<div class="card">
+
+    <div class="emoji">💜</div>
+
+    <h1>I'm Sorry, Mica</h1>
+    <p class="subtitle">A little message from me to you ♡</p>
+
+    <!-- HUG STICKER -->
+    <div class="hug-sticker" onclick="spawnBurst(event, '🤗')" title="Click for a hug!">
+        🤗
+    </div>
+    <span class="hug-label">— sending you a big hug —</span>
+
+    <div class="letter">
+
+        <p>
+            Di ko alam paano 'to sisimulan, pero ang dami na nating
+            naging away na naganap.
+        </p>
+
+        <p>
+            Una sa lahat, pasensya na kung nakarating pa kay Joyce
+            yung ganung bagay na dapat tayo lang may alam o tayo
+            ang nag-aayos. Away nating magkaibigan yun, kaso sa
+            kanya rin ako humingi ng advice.
+        </p>
+
+        <p>
+            Pasensya na rin dahil naging iba yung pagkakaintindi ko
+            sa mga sinabi mo o sa mga chat mo sa'kin, pati na rin
+            sa mga nasabi ko at sa tono ng pagkakasabi ko.
+        </p>
+
+        <p>
+            Pangako, mas iintindihin ko na yung bawat salitang
+            bibitawan ko. Ayokong maulit pa yung ganitong sitwasyon.
+        </p>
+
+        <p>
+            Sana hindi magbago yung pag-uusap natin o yung closeness
+            natin dahil sa nangyari. Ayokong masira yung friendship
+            natin dahil lang sa hindi natin pagkakaintindihan.
+        </p>
+
+        <p>
+            Pasensya na ulit sa lahat ng nangyari. Yun lang naman
+            yung gusto kong sabihin sa'yo dito sa DC.
+        </p>
+
+    </div>
+
+    <button class="read-btn" onclick="showMessage()">
+        One last thing... 💌
+    </button>
+
+    <div id="extra">
+        <p>
+            Sorry again, Micaaaaaaaaaaaaa! 😊💜
+        </p>
+        <p>
+            Bawi me sa susunod, treat ulit kita ice cream! 🍦☺️
+        </p>
+        <p>
+            Thank you pa rin sa friendship natin. I hope okay na tayo. ♡
+        </p>
+        <!-- Extra hug sticker in the hidden message -->
+        <div class="hug-sticker" style="font-size: 46px;" onclick="spawnBurst(event, '🤗')" title="Another hug!">
+            🤗
+        </div>
+        <span class="hug-label">— hug ulit! —</span>
+    </div>
+
+    <button class="music-btn" onclick="toggleMusic()" id="musicButton">
+        ♫ Play Music
+    </button>
+
+    <p class="footer">sincerity</p>
+
+</div>
+
+<!-- Autoplay prompt overlay -->
+<div class="autoplay-prompt" id="autoplayPrompt">
+    <div class="prompt-box">
+        <div class="prompt-emoji">🎵💜</div>
+        <p>Tap to play a song while reading this message ♡</p>
+        <button onclick="startAutoplay()">Play Music ♫</button>
+    </div>
+</div>
+
+<audio id="music" loop autoplay>
+    <source src="ssstik.io_1791725778693.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ============================
+   HUG STICKER BURST EFFECT
+   ============================
+   When the hug sticker is clicked, little hug emojis
+   float up from the click point. Purely for fun. 💜
+*/
+function spawnBurst(event, emoji) {
+    const count = 6;
+    for (let i = 0; i < count; i++) {
+        const el = document.createElement("div");
+        el.className = "sticker-burst";
+        el.textContent = emoji;
+
+        // Random horizontal spread
+        const offsetX = (Math.random() - 0.5) * 120;
+        el.style.left = (event.clientX + offsetX) + "px";
+        el.style.top = event.clientY + "px";
+        el.style.animationDelay = (i * 0.06) + "s";
+        el.style.fontSize = (20 + Math.random() * 18) + "px";
+
+        document.body.appendChild(el);
+
+        // Remove after animation ends
+        setTimeout(() => el.remove(), 1400 + i * 60);
+    }
+}
+
+/* ============================
+   AUTOPLAY ON OPEN
+   ============================
+   The <audio> tag has "autoplay" and "loop" so it starts
+   playing as soon as the page opens.
+
+   Note: Browsers block unmuted autoplay until the user
+   interacts with the page. To handle this:
+   1. Try to play muted first (allowed by most browsers).
+   2. Show a tap-to-unmute overlay.
+   3. On tap, unmute and continue playing with sound.
+*/
+
+const music = document.getElementById("music");
+const button = document.getElementById("musicButton");
+const prompt = document.getElementById("autoplayPrompt");
+
+// Try to autoplay as soon as possible (muted first so browsers allow it)
+window.addEventListener("load", () => {
+    music.volume = 1.0;
+
+    // Attempt muted autoplay — this is allowed by most browsers
+    music.muted = true;
+    music.play().then(() => {
+        // Autoplay succeeded (muted). Now ask user to unmute.
+        showAutoplayPrompt();
+    }).catch(() => {
+        // Autoplay failed entirely — show prompt immediately
+        showAutoplayPrompt();
+    });
+});
+
+function showAutoplayPrompt() {
+    prompt.classList.add("show");
+}
+
+function startAutoplay() {
+    music.muted = false;
+    music.play().then(() => {
+        button.textContent = "♫ Pause Music";
+        prompt.classList.remove("show");
+    }).catch(() => {
+        alert("Please put your music file named song.mp3 in the same folder as index.html.");
+        prompt.classList.remove("show");
+    });
+}
+
+/* ============================
+   EXISTING FUNCTIONS
+   ============================ */
+
+function showMessage() {
+    const message = document.getElementById("extra");
+
+    if (message.style.display === "block") {
+        message.style.display = "none";
+    } else {
+        message.style.display = "block";
+    }
+}
+
+function toggleMusic() {
+    if (music.paused) {
+        music.muted = false;
+        music.play().then(() => {
+            button.textContent = "♫ Pause Music";
+        }).catch(() => {
+            alert("Please put your music file named song.mp3 in the same folder as index.html.");
+        });
+    } else {
+        music.pause();
+        button.textContent = "♫ Play Music";
+    }
+}
+</script>
+
+</body>
+</html>
